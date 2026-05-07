@@ -1,0 +1,16 @@
+# Compiled binaries
+bin/*
+!bin/.gitkeep
+*.exe
+*.out
+
+# Go build cache / coverage
+*.test
+coverage.out
+
+# Editor / OS
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
