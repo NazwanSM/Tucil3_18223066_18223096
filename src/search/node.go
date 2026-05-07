@@ -9,8 +9,8 @@ type Node struct {
 	State  state.State
 	Parent *Node
 	Action successor.Direction
-	G      int
-	H      int
+	G int
+	H int
 }
 
 func (n *Node) F() int { return n.G + n.H }

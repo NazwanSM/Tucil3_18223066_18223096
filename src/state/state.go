@@ -1,8 +1,8 @@
 package state
 
 type State struct {
-	X         int
-	Y         int
+	X int
+	Y int
 	NextDigit int
 }
 

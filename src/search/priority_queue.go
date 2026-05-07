@@ -1,7 +1,7 @@
 package search
 
 type priorityQueue struct {
-	items    []*Node
+	items []*Node
 	priority func(*Node) int
 }
 
