@@ -5,7 +5,8 @@ type Algorithm uint8
 const (
 	UCS   Algorithm = iota 
 	GBFS                   
-	AStar                  
+	AStar       
+	IDAStar           
 )
 
 func (a Algorithm) String() string {
@@ -16,6 +17,8 @@ func (a Algorithm) String() string {
 		return "GBFS"
 	case AStar:
 		return "A*"
+	case IDAStar:
+		return "IDA*"
 	default:
 		return "unknown"
 	}

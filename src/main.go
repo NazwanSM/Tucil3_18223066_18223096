@@ -53,8 +53,8 @@ func run() error {
 	}
 
 	res, err := search.Search(search.Config{
-		Board:     pr.Board,
-		Start:     start,
+		Board: pr.Board,
+		Start: start,
 		Algorithm: alg,
 		Heuristic: h,
 		Generator: successor.SlideGenerator{},
@@ -98,8 +98,10 @@ func parseAlg(name string) (search.Algorithm, error) {
 		return search.GBFS, nil
 	case "astar", "a*":
 		return search.AStar, nil
+	case "idastar", "ida*":
+		return search.IDAStar, nil
 	default:
-		return 0, fmt.Errorf("algoritma tidak dikenal: %q (pilih ucs / gbfs / astar)", name)
+		return 0, fmt.Errorf("algoritma tidak dikenal: %q (pilih ucs / gbfs / astar / idastar)", name)
 	}
 }
 
