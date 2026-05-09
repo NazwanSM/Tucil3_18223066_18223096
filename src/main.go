@@ -8,6 +8,7 @@ import (
 	"strings"
 
 	"iceslide/src/board"
+	"iceslide/src/gui"
 	"iceslide/src/heuristic"
 	"iceslide/src/search"
 	"iceslide/src/state"
@@ -25,16 +26,18 @@ func main() {
 }
 
 func run() error {
-	algName := flag.String("alg", "", "algoritma: ucs | gbfs | astar (kosong = tanya interaktif)")
-	hName := flag.String("h", "", "heuristik: zero | manhattan | remaining (kosong = tanya interaktif)")
+	useGUI := flag.Bool("gui", false, "jalankan mode GUI")
+	algName := flag.String("alg", "", "algoritma: ucs | gbfs | astar | idastar")
+	hName := flag.String("h", "", "heuristik: zero | manhattan | remaining | euclidean | maxcombined")
 	outPath := flag.String("out", defaultSavePath, "default file output untuk fitur simpan solusi")
 	flag.Parse()
 
-	args := flag.Args()
-	if len(args) < 1 {
-		return fmt.Errorf("usage: iceslide [-alg ucs|gbfs|astar] [-h zero|manhattan|remaining] [-out PATH] <input.txt>")
+	if *useGUI || flag.NArg() == 0 {
+		gui.Run()
+		return nil
 	}
 
+	args := flag.Args()
 	pr, err := board.LoadFile(args[0])
 	if err != nil {
 		return fmt.Errorf("load %s: %w", args[0], err)
@@ -53,8 +56,8 @@ func run() error {
 	}
 
 	res, err := search.Search(search.Config{
-		Board: pr.Board,
-		Start: start,
+		Board:     pr.Board,
+		Start:     start,
 		Algorithm: alg,
 		Heuristic: h,
 		Generator: successor.SlideGenerator{},
@@ -101,7 +104,7 @@ func parseAlg(name string) (search.Algorithm, error) {
 	case "idastar", "ida*":
 		return search.IDAStar, nil
 	default:
-		return 0, fmt.Errorf("algoritma tidak dikenal: %q (pilih ucs / gbfs / astar / idastar)", name)
+		return 0, fmt.Errorf("algoritma tidak dikenal: %q", name)
 	}
 }
 
@@ -113,7 +116,11 @@ func parseHeuristic(name string) (heuristic.Func, string, error) {
 		return heuristic.Manhattan, "Manhattan", nil
 	case "remaining":
 		return heuristic.RemainingDigits, "RemainingDigits", nil
+	case "euclidean":
+		return heuristic.Euclidean, "Euclidean", nil
+	case "maxcombined":
+		return heuristic.MaxCombined, "Max Combined", nil
 	default:
-		return nil, "", fmt.Errorf("heuristik tidak dikenal: %q (pilih zero / manhattan / remaining)", name)
+		return nil, "", fmt.Errorf("heuristik tidak dikenal: %q", name)
 	}
 }
