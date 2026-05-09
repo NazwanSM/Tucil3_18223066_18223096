@@ -49,6 +49,7 @@ func BuildFrames(b *board.Board, path []*search.Node) []Frame {
 }
 
 func PrintSummary(w io.Writer, alg search.Algorithm, hName string, b *board.Board, start state.State, res *search.Result) {
+	fmt.Fprintln(w)
 	fmt.Fprintln(w, "== Initial Board ==")
 	fmt.Fprint(w, RenderInitial(b, start))
 
@@ -67,6 +68,7 @@ func PrintSummary(w io.Writer, alg search.Algorithm, hName string, b *board.Boar
 	fmt.Fprintf(w, "Iterations      : %d\n", res.NodesExpanded)
 	fmt.Fprintf(w, "Nodes generated : %d\n", res.NodesGenerated)
 	fmt.Fprintf(w, "Duration        : %s\n", res.Duration)
+	fmt.Fprintln(w)
 }
 
 func PathString(path []*search.Node) string {
@@ -77,7 +79,7 @@ func PathString(path []*search.Node) string {
 	for i := 1; i < len(path); i++ {
 		parts = append(parts, path[i].Action.String())
 	}
-	return strings.Join(parts, " -> ")
+	return strings.Join(parts, "")
 }
 
 func RenderInitial(b *board.Board, s state.State) string {
@@ -164,6 +166,7 @@ func PromptLine(scanner *bufio.Scanner, w io.Writer, prompt string) (string, err
 
 func SelectAlgorithm(scanner *bufio.Scanner, w io.Writer) (search.Algorithm, error) {
 	for {
+		fmt.Fprintln(w)
 		fmt.Fprintln(w, "== Pilih Algoritma ==")
 		fmt.Fprintln(w, "  1. Uniform Cost Search (UCS)")
 		fmt.Fprintln(w, "  2. Greedy Best-First Search (GBFS)")
@@ -193,6 +196,7 @@ func SelectHeuristic(scanner *bufio.Scanner, w io.Writer, alg search.Algorithm) 
 		return heuristic.Zero, "Zero (UCS)", nil
 	}
 	for {
+		fmt.Fprintln(w)
 		fmt.Fprintln(w, "== Pilih Heuristik ==")
 		fmt.Fprintln(w, "  1. Manhattan")
 		fmt.Fprintln(w, "  2. Remaining Digits")
