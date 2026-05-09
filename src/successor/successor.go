@@ -30,10 +30,9 @@ func (d Direction) String() string {
 }
 
 type Successor struct {
-	State       state.State
-	StepCost    int
-	Direction   Direction
-	ReachedExit bool 
+	State state.State
+	StepCost int
+	Direction Direction
 }
 
 type Generator interface {
@@ -75,10 +74,9 @@ func (g SlideGenerator) slide(b *board.Board, s state.State, d Direction) (Succe
 				return Successor{}, false
 			}
 			return Successor{
-				State:       state.State{X: x, Y: y, NextDigit: nextDigit},
-				StepCost:    cost,
-				Direction:   d,
-				ReachedExit: false,
+				State: state.State{X: x, Y: y, NextDigit: nextDigit},
+				StepCost: cost,
+				Direction: d,
 			}, true
 
 		case board.CellLava:
@@ -94,16 +92,7 @@ func (g SlideGenerator) slide(b *board.Board, s state.State, d Direction) (Succe
 			cost += cell.Cost
 			x, y = nx, ny
 
-		case board.CellExit:
-			cost += cell.Cost
-			return Successor{
-				State:       state.State{X: nx, Y: ny, NextDigit: nextDigit},
-				StepCost:    cost,
-				Direction:   d,
-				ReachedExit: true,
-			}, true
-
-		case board.CellIce:
+		case board.CellExit, board.CellIce:
 			cost += cell.Cost
 			x, y = nx, ny
 		}
