@@ -200,7 +200,9 @@ func SelectHeuristic(scanner *bufio.Scanner, w io.Writer, alg search.Algorithm) 
 		fmt.Fprintln(w, "== Pilih Heuristik ==")
 		fmt.Fprintln(w, "  1. Manhattan")
 		fmt.Fprintln(w, "  2. Remaining Digits")
-		fmt.Fprint(w, "Pilihan [1-2]: ")
+		fmt.Fprintln(w, "  3. Euclidean")
+		fmt.Fprintln(w, "  4. Max Combined (max of Manhattan & Remaining Digits)")
+		fmt.Fprint(w, "Pilihan [1-4]: ")
 		if !scanner.Scan() {
 			return nil, "", scanner.Err()
 		}
@@ -209,6 +211,10 @@ func SelectHeuristic(scanner *bufio.Scanner, w io.Writer, alg search.Algorithm) 
 			return heuristic.Manhattan, "Manhattan", nil
 		case "2":
 			return heuristic.RemainingDigits, "RemainingDigits", nil
+		case "3":
+			return heuristic.Euclidean, "Euclidean", nil
+		case "4":
+			return heuristic.MaxCombined, "Max Combined", nil
 		default:
 			fmt.Fprintln(w, "(input tidak valid; pilih 1 atau 2)")
 		}

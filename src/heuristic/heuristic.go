@@ -1,6 +1,8 @@
 package heuristic
 
 import (
+	"math"
+
 	"iceslide/src/board"
 	"iceslide/src/state"
 )
@@ -22,7 +24,28 @@ func RemainingDigits(s state.State, b *board.Board) int {
 	if remaining < 0 {
 		remaining = 0
 	}
-	return remaining + 1 
+	return remaining
+}
+
+// bonus: Euclidean
+func Euclidean(s state.State, b *board.Board) int {
+	tx, ty, ok := findTarget(s, b)
+	if !ok {
+		return 0
+	}
+	dx := float64(tx - s.X)
+	dy := float64(ty - s.Y)
+	return int(math.Sqrt(dx*dx + dy*dy))
+}
+
+// bonus: MaxCombined
+func MaxCombined(s state.State, b *board.Board) int {
+	m := Manhattan(s, b)
+	r := RemainingDigits(s, b)
+	if m > r {
+		return m
+	}
+	return r
 }
 
 func findTarget(s state.State, b *board.Board) (int, int, bool) {
