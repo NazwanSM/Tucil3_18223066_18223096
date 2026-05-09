@@ -168,7 +168,8 @@ func SelectAlgorithm(scanner *bufio.Scanner, w io.Writer) (search.Algorithm, err
 		fmt.Fprintln(w, "  1. Uniform Cost Search (UCS)")
 		fmt.Fprintln(w, "  2. Greedy Best-First Search (GBFS)")
 		fmt.Fprintln(w, "  3. A*")
-		fmt.Fprint(w, "Pilihan [1-3]: ")
+		fmt.Fprintln(w, "  4. Iterative Deepening A* (IDA*)")
+		fmt.Fprint(w, "Pilihan [1-4]: ")
 		if !scanner.Scan() {
 			return 0, scanner.Err()
 		}
@@ -179,8 +180,10 @@ func SelectAlgorithm(scanner *bufio.Scanner, w io.Writer) (search.Algorithm, err
 			return search.GBFS, nil
 		case "3":
 			return search.AStar, nil
+		case "4":
+			return search.IDAStar, nil
 		default:
-			fmt.Fprintln(w, "(input tidak valid; pilih 1, 2, atau 3)")
+			fmt.Fprintln(w, "(input tidak valid; pilih 1, 2, 3, atau 4)")
 		}
 	}
 }
