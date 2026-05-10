@@ -1,0 +1,33 @@
+Algoritma       : A*
+Heuristik       : Euclidean
+Path            : DR
+Cost            : 6
+Steps           : 2
+Iterations      : 2
+Nodes generated : 3
+Duration        : 0.000 ms
+
+== Step-by-step ==
+
+--- Step 0 / 2  (Initial) ---
+XXXXXXX
+XZ*L**X
+X*****X
+X****OX
+XXXXXXX
+
+--- Step 1 / 2  (Down) ---
+XXXXXXX
+X**L**X
+X*****X
+XZ***OX
+XXXXXXX
+Move: Down  step cost: 2  total cost: 2
+
+--- Step 2 / 2  (Right) ---
+XXXXXXX
+X**L**X
+X*****X
+X****ZX
+XXXXXXX
+Move: Right  step cost: 4  total cost: 6

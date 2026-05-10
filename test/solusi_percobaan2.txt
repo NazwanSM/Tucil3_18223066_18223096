@@ -1,0 +1,72 @@
+Algoritma       : GBFS
+Heuristik       : Manhattan
+Path            : RDRULD
+Cost            : 23
+Steps           : 6
+Iterations      : 7
+Nodes generated : 12
+Duration        : 0.000 ms
+
+== Step-by-step ==
+
+--- Step 0 / 6  (Initial) ---
+XXXXXXXX
+XZ*0X**X
+X******X
+X**1***X
+X****O*X
+XXXXXXXX
+
+--- Step 1 / 6  (Right) ---
+XXXXXXXX
+X**ZX**X
+X******X
+X**1***X
+X****O*X
+XXXXXXXX
+Move: Right  step cost: 3  total cost: 3
+
+--- Step 2 / 6  (Down) ---
+XXXXXXXX
+X***X**X
+X******X
+X******X
+X**Z*O*X
+XXXXXXXX
+Move: Down  step cost: 6  total cost: 9
+
+--- Step 3 / 6  (Right) ---
+XXXXXXXX
+X***X**X
+X******X
+X******X
+X****OZX
+XXXXXXXX
+Move: Right  step cost: 5  total cost: 14
+
+--- Step 4 / 6  (Up) ---
+XXXXXXXX
+X***X*ZX
+X******X
+X******X
+X****O*X
+XXXXXXXX
+Move: Up  step cost: 3  total cost: 17
+
+--- Step 5 / 6  (Left) ---
+XXXXXXXX
+X***XZ*X
+X******X
+X******X
+X****O*X
+XXXXXXXX
+Move: Left  step cost: 1  total cost: 18
+
+--- Step 6 / 6  (Down) ---
+XXXXXXXX
+X***X**X
+X******X
+X******X
+X****Z*X
+XXXXXXXX
+Move: Down  step cost: 5  total cost: 23

@@ -1,0 +1,33 @@
+Algoritma       : A*
+Heuristik       : Remaining Digits
+Path            : RD
+Cost            : 8
+Steps           : 2
+Iterations      : 4
+Nodes generated : 7
+Duration        : 0.000 ms
+
+== Step-by-step ==
+
+--- Step 0 / 2  (Initial) ---
+XXXXXXX
+XZ*0**X
+X*****X
+X****OX
+XXXXXXX
+
+--- Step 1 / 2  (Right) ---
+XXXXXXX
+X****ZX
+X*****X
+X****OX
+XXXXXXX
+Move: Right  step cost: 6  total cost: 6
+
+--- Step 2 / 2  (Down) ---
+XXXXXXX
+X*****X
+X*****X
+X****ZX
+XXXXXXX
+Move: Down  step cost: 2  total cost: 8

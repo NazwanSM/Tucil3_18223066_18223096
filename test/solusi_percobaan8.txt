@@ -1,0 +1,33 @@
+Algoritma       : A*
+Heuristik       : Manhattan
+Path            : RD
+Cost            : 0
+Steps           : 2
+Iterations      : 2
+Nodes generated : 5
+Duration        : 0.000 ms
+
+== Step-by-step ==
+
+--- Step 0 / 2  (Initial) ---
+XXXXXXX
+XZ**0*X
+X*****X
+X****OX
+XXXXXXX
+
+--- Step 1 / 2  (Right) ---
+XXXXXXX
+X****ZX
+X*****X
+X****OX
+XXXXXXX
+Move: Right  step cost: 0  total cost: 0
+
+--- Step 2 / 2  (Down) ---
+XXXXXXX
+X*****X
+X*****X
+X****ZX
+XXXXXXX
+Move: Down  step cost: 0  total cost: 0

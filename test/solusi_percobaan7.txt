@@ -1,0 +1,33 @@
+Algoritma       : A*
+Heuristik       : Max Combined
+Path            : DR
+Cost            : 6
+Steps           : 2
+Iterations      : 3
+Nodes generated : 4
+Duration        : 0.000 ms
+
+== Step-by-step ==
+
+--- Step 0 / 2  (Initial) ---
+XXXXXXX
+XZ****X
+X**X**X
+X****OX
+XXXXXXX
+
+--- Step 1 / 2  (Down) ---
+XXXXXXX
+X*****X
+X**X**X
+XZ***OX
+XXXXXXX
+Move: Down  step cost: 2  total cost: 2
+
+--- Step 2 / 2  (Right) ---
+XXXXXXX
+X*****X
+X**X**X
+X****ZX
+XXXXXXX
+Move: Right  step cost: 4  total cost: 6
