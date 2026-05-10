@@ -67,7 +67,7 @@ func PrintSummary(w io.Writer, alg search.Algorithm, hName string, b *board.Boar
 	}
 	fmt.Fprintf(w, "Iterations      : %d\n", res.NodesExpanded)
 	fmt.Fprintf(w, "Nodes generated : %d\n", res.NodesGenerated)
-	fmt.Fprintf(w, "Duration        : %s\n", res.Duration)
+	fmt.Fprintf(w, "Waktu eksekusi  : %d ms\n", res.Duration.Milliseconds())
 	fmt.Fprintln(w)
 }
 

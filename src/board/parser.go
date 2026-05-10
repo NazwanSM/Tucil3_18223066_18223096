@@ -47,11 +47,47 @@ func Parse(r io.Reader) (*ParseResult, error) {
 		return nil, fmt.Errorf("read: %w", err)
 	}
 
+	b := New(grid)
+
+	if err := validateBoard(b); err != nil {
+		return nil, err
+	}
+
 	return &ParseResult{
-		Board:  New(grid),
+		Board:  b,
 		StartX: startX,
 		StartY: startY,
 	}, nil
+}
+
+func validateBoard(b *Board) error {
+	hasExit := false
+	for y := 0; y < b.Height(); y++ {
+		for x := 0; x < b.Width(); x++ {
+			if b.At(x, y).Type == CellExit {
+				hasExit = true
+			}
+		}
+	}
+	if !hasExit {
+		return errors.New("invalid board: no exit tile (O) found")
+	}
+
+	for d := 0; d <= b.MaxDigit(); d++ {
+		found := false
+		for y := 0; y < b.Height() && !found; y++ {
+			for x := 0; x < b.Width() && !found; x++ {
+				c := b.At(x, y)
+				if c.Type == CellNumber && c.Digit == d {
+					found = true
+				}
+			}
+		}
+		if !found {
+			return fmt.Errorf("invalid board: digit %d missing (gap in sequence 0..%d)", d, b.MaxDigit())
+		}
+	}
+	return nil
 }
 
 func parseDims(s *bufio.Scanner) (int, int, error) {

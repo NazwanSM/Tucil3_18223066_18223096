@@ -176,5 +176,5 @@ Tucil3_18223066_18223096/
 
 | Nama | NIM | Kontak |
 |------|-----|--------|
-| Nazwan Siddqi Muttaqin | 18223066 | nazwan.siddqi@gmail.com |
+| Nazwan Siddqi Muttaqin | 18223066 | 18223066@std.stei.itb.ac.id |
 | Matthew Sebastian Kurniawan | 18223096 | 18223096@std.stei.itb.ac.id |

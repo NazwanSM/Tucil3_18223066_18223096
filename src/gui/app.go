@@ -147,7 +147,7 @@ func handleSolve(w http.ResponseWriter, r *http.Request) {
 	}
 
 	resp := solveResponse{
-		Algorithm:      algStr,
+		Algorithm:      alg.String(),
 		Heuristic:      hLabel,
 		Width:          b.Width(),
 		Height:         b.Height(),

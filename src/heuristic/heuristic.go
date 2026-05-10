@@ -21,10 +21,29 @@ func Manhattan(s state.State, b *board.Board) int {
 
 func RemainingDigits(s state.State, b *board.Board) int {
 	remaining := b.MaxDigit() + 1 - s.NextDigit
-	if remaining < 0 {
-		remaining = 0
+	if remaining <= 0 {
+		return 0
 	}
-	return remaining
+	minCost := minTraversableCost(b)
+	return remaining * minCost
+}
+
+func minTraversableCost(b *board.Board) int {
+	min := math.MaxInt32
+	for y := 0; y < b.Height(); y++ {
+		for x := 0; x < b.Width(); x++ {
+			c := b.At(x, y)
+			if c.Type != board.CellRock && c.Type != board.CellLava {
+				if c.Cost < min {
+					min = c.Cost
+				}
+			}
+		}
+	}
+	if min == math.MaxInt32 {
+		return 0
+	}
+	return min
 }
 
 // bonus: Euclidean

@@ -265,16 +265,18 @@ function setPbBtns(enabled) {
 function renderFrame(idx) {
   const d = state.data;
   if (!d) return;
+  const frames = d.frames || [];
+  if (frames.length === 0) return;
   if (idx < 0) idx = 0;
-  if (idx >= d.frames.length) idx = d.frames.length - 1;
+  if (idx >= frames.length) idx = frames.length - 1;
   state.curFrame = idx;
 
-  const fr = d.frames[idx];
+  const fr = frames[idx];
   document.getElementById('step-range').value = idx;
 
   const action = fr.action === 'Initial' ? 'Initial' : fr.action;
   document.getElementById('step-info').textContent =
-    'Step ' + idx + ' / ' + (d.frames.length - 1) +
+    'Step ' + idx + ' / ' + (frames.length - 1) +
     '  |  Aksi: ' + action +
     (idx > 0 ? '  |  Step Cost: ' + fr.stepCost + '  |  Total Cost: ' + fr.totalCost : '');
 
